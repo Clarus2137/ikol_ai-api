@@ -1,0 +1,53 @@
+@media (min-width: 0) {
+   .h1 {
+      font-size: 2rem;
+   }
+   
+   .h2 {
+      font-size: 1.2rem;
+   }
+   
+   .result {
+      font-size: 1.5rem;
+   }
+   
+   .form__input {
+      font-size: 0.9rem;
+   }
+}
+
+@media (min-width: 600px) {
+   .h1 {
+      font-size: 2.5rem;
+   }
+   
+   .h2 {
+      font-size: 1.5rem;
+   }
+   
+   .result {
+      font-size: 1.8rem;
+   }
+   
+   .form__input {
+      font-size: 1.3rem;
+   }
+}
+
+@media (min-width: 768px) {
+   .h1 {
+      font-size: 3rem;
+   }
+   
+   .h2 {
+      font-size: 1.8rem;
+   }
+   
+   .result {
+      font-size: 2rem;
+   }
+   
+   .form__input {
+      font-size: 1.5rem;
+   }
+}
