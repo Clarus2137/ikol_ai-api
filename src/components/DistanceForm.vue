@@ -1,5 +1,5 @@
 <template>
-   <p class="h2" align="center">By obliczyć odległość dla swojej trasy, skorzystaj z poniższego formularza. Wprowadź dane w forma'szerokość geograficzna, długość geograficzna'. Na przykład: 52,207441370644965, 20,91503603732403.</p>
+   <p class="h2" align="center">By obliczyć odległość dla swojej trasy, skorzystaj z poniższego formularza. Wprowadź dane w formacie 'szerokość geograficzna, długość geograficzna'. Na przykład: 52.207441370644965, 20.91503603732403.</p>
 
    <form class="form" @submit.prevent="submitForm">
       <div class="form__coordinates">
