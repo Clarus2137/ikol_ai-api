@@ -54,7 +54,7 @@ export default defineComponent({
                kilometers: distanceData.value / 1000
             };
          } catch (error) {
-            console.error('Błąd przy czytaniu API.', error);
+            console.error('Błąd przy obliczaniu.', error);
          }
       },
       

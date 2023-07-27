@@ -1,14 +1,16 @@
 <template>
-   <p class="h2" align="center">By obliczyć odległość dla swojej trasy, skorzystaj z poniższego formularza. Wprowadź dane w formacie 'szerokość geograficzna, długość geograficzna'. Na przykład: 52.207441370644965, 20.91503603732403.</p>
+   <p class="h2" align="center">By obliczyć odległość dla swojej trasy, skorzystaj z poniższego formularza. Wprowadź dane w formacie 'szerokość geograficzna, długość geograficzna' zarówno dla pierwszego punktu, jak i dla drugiego. Na przykład: 52.207441370644965, 20.91503603732403.</p>
 
    <form class="form" @submit.prevent="submitForm">
       <div class="form__coordinates">
          <input v-model="origin" type="text" class="form__input" placeholder="Współrzędne początkowe" required>
          <p v-if="originError" class="form__error">Sprawdź poprawność wprowadzonych danych</p>
+         <p v-if="showCoordinatesAlert" class="form__error">Wprowadź różne pary współrzędnych</p>
       </div>
       <div class="form__coordinates">
          <input v-model="destination" type="text" class="form__input" placeholder="Współrzędne końcowe" required>
          <p v-if="destinationError" class="form__error">Sprawdź poprawność wprowadzonych danych</p>
+         <p v-if="showCoordinatesAlert" class="form__error">Wprowadź różne pary współrzędnych</p>
       </div>
       <div class="form__submit">
          <button type="submit" class="form__btn btn">Oblicz</button>
@@ -28,34 +30,50 @@ export default defineComponent({
          destination: '',
          originError: false,
          destinationError: false,
+         showCoordinatesAlert: false,
       };
    },
    methods: {
       submitForm() {
-         if (this.isValidCoordinates(this.origin) && this.isValidCoordinates(this.destination)) {
+         if (
+            this.isValidCoordinates(this.origin) &&
+            this.isValidCoordinates(this.destination) &&
+            this.areCoordinatesDifferent()
+         ) {
             this.originError = false;
             this.destinationError = false;
+            this.showCoordinatesAlert = false; // Скрыть алерт при успешной валидации
             this.$emit('calculate', this.origin, this.destination);
          } else {
             this.originError = !this.isValidCoordinates(this.origin);
             this.destinationError = !this.isValidCoordinates(this.destination);
+
+            if (!this.areCoordinatesDifferent()) {
+               this.showCoordinatesAlert = true;
+            } else {
+               this.showCoordinatesAlert = false;
+            }
          }
       },
+
       isValidCoordinates(coordinate: string): boolean {
-         // A function for validating the format of coordinates.
-         // In this example, we check that the coordinates consist of two numbers, separated by a comma, without extra spaces.
          const coordinatePattern = /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/;
          return coordinatePattern.test(coordinate.trim());
       },
+
+      areCoordinatesDifferent(): boolean {
+         return this.origin !== this.destination;
+      },
+
       resetForm() {
          this.origin = '';
          this.destination = '';
          this.originError = false;
          this.destinationError = false;
-         this.$emit('reset'); // Emit an event to reset the result in the parent component
+         this.$emit('reset');
       },
    },
-   emits: ['calculate', 'reset'], // Declaration of custom events
+   emits: ['calculate', 'reset'],
 });
 </script>
 
