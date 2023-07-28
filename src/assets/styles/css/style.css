@@ -33,7 +33,6 @@ input::-ms-input-placeholder {
 }
 
 main {
-  padding: 10px 0;
   background: url("../../img/bg-img.jpg") no-repeat center;
   background-size: cover;
   position: relative;
@@ -69,7 +68,7 @@ main::before {
   max-width: 1980px;
   height: 100%;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 10px 15px;
   position: relative;
   z-index: 10;
 }
