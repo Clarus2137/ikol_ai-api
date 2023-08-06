@@ -44,9 +44,11 @@ export default defineComponent({
                   units: 'metric',
                   origins: origin,
                   destinations: destination,
-                  key: '5bxKqOKVUJPcd8pIMktwq2dxyXEr7' // API-key
+                  key: 'UKltbYbwCIymsj65Sqe38CC7gpsAh' // API-key
                }
             });
+
+            console.log(response)
 
             const distanceData = response.data.rows[0].elements[0].distance;
             this.result = {
