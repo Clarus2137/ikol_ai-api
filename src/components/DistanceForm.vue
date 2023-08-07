@@ -1,16 +1,16 @@
 <template>
-   <p class="h2" align="center">By obliczyć odległość dla swojej trasy, skorzystaj z poniższego formularza. Wprowadź dane w formacie "szerokość geograficzna, długość geograficzna" zarówno dla pierwszego punktu, jak i dla drugiego. Na przykład: 52.207441370644965, 20.91503603732403.</p>
+   <p class="h2" align="center">By obliczyć odległość dla swojej trasy, skorzystaj z poniższego formularza. Wprowadź dane w formacie "szerokość geograficzna, długość geograficzna" zarówno dla pierwszego punktu, jak i dla drugiego. Na przykład: 52.2074, 20.9150.</p>
 
    <form class="form" @submit.prevent="submitForm">
       <div class="form__coordinates">
          <input v-model="origin" type="text" class="form__input" placeholder="Współrzędne początkowe" required>
          <p v-if="originError" class="form__error">Sprawdź poprawność wprowadzonych danych</p>
-         <p v-if="showCoordinatesAlert" class="form__error">Wprowadź różne pary współrzędnych</p>
+         <p v-if="coordinatesAlert" class="form__error">Wprowadź różne pary współrzędnych</p>
       </div>
       <div class="form__coordinates">
          <input v-model="destination" type="text" class="form__input" placeholder="Współrzędne końcowe" required>
          <p v-if="destinationError" class="form__error">Sprawdź poprawność wprowadzonych danych</p>
-         <p v-if="showCoordinatesAlert" class="form__error">Wprowadź różne pary współrzędnych</p>
+         <p v-if="coordinatesAlert" class="form__error">Wprowadź różne pary współrzędnych</p>
       </div>
       <div class="form__submit">
          <button type="submit" class="form__btn btn">Oblicz</button>
@@ -30,7 +30,7 @@ export default defineComponent({
          destination: '',
          originError: false,
          destinationError: false,
-         showCoordinatesAlert: false,
+         coordinatesAlert: false,
       };
    },
    methods: {
@@ -42,16 +42,16 @@ export default defineComponent({
          ) {
             this.originError = false;
             this.destinationError = false;
-            this.showCoordinatesAlert = false; // Скрыть алерт при успешной валидации
+            this.coordinatesAlert = false; // Скрыть алерт при успешной валидации
             this.$emit('calculate', this.origin, this.destination);
          } else {
             this.originError = !this.isValidCoordinates(this.origin);
             this.destinationError = !this.isValidCoordinates(this.destination);
 
             if (!this.areCoordinatesDifferent()) {
-               this.showCoordinatesAlert = true;
+               this.coordinatesAlert = true;
             } else {
-               this.showCoordinatesAlert = false;
+               this.coordinatesAlert = false;
             }
          }
       },
@@ -70,6 +70,7 @@ export default defineComponent({
          this.destination = '';
          this.originError = false;
          this.destinationError = false;
+         this.coordinatesAlert = false;
          this.$emit('reset');
       },
    },
