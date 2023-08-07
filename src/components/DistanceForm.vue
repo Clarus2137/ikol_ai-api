@@ -42,7 +42,7 @@ export default defineComponent({
          ) {
             this.originError = false;
             this.destinationError = false;
-            this.coordinatesAlert = false; // Скрыть алерт при успешной валидации
+            this.coordinatesAlert = false;
             this.$emit('calculate', this.origin, this.destination);
          } else {
             this.originError = !this.isValidCoordinates(this.origin);

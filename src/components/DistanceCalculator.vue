@@ -48,8 +48,6 @@ export default defineComponent({
                }
             });
 
-            console.log(response)
-
             const distanceData = response.data.rows[0].elements[0].distance;
             this.result = {
                meters: distanceData.value,
