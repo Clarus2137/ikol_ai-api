@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import axios from 'axios';
-import DistanceForm from './DistanceForm.vue'
+// import DistanceForm from './DistanceForm.vue'
 
 interface DistanceResult {
    meters: number;
@@ -28,9 +28,9 @@ interface DistanceResult {
 
 export default defineComponent({
    name: 'DistanceCalculator',
-   components: {
-      DistanceForm
-   },
+   // components: {
+   //    DistanceForm
+   // },
    data() {
       return {
          result: null as DistanceResult | null,
